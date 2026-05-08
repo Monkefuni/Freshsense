@@ -73,9 +73,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .impact:focus-visible{outline:2px solid var(--Y);outline-offset:2px}
 .impact-chev{color:rgba(255,224,69,.5);flex-shrink:0;margin-left:4px}
 
-/* Home-screen accessibility quickbar, text-size and
-   high-contrast without navigating into Settings. The deeper Settings
-   tab still exists and remains the master surface for these preferences. */
+/* Home-screen accessibility quickbar, text-size and high-contrast without navigating into Settings. 
+  The deeper Settings tab still exists and remains the master surface for these preferences. */
 .quickbar{display:flex;gap:6px;margin-bottom:14px}
 .qb{flex:1;background:var(--N3);border:1px solid var(--BD);border-radius:10px;padding:7px 10px;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:background .15s,border-color .15s,transform .1s;min-height:44px;color:rgba(244,244,239,.7);font-family:var(--m);font-weight:500;font-size:11px}
 .qb:hover{border-color:var(--BD2)}
@@ -166,7 +165,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .bbtn svg{color:var(--W)}
 
 /* Labelled back button used on the scanner top bar so the user can see
-   the word "Home" rather than parsing a chevron icon alone. The same
+   the word "Home" rather than parsing a icon alone. The same
    pattern is used in History and Settings via ".pgback-lbl." */
 .bbtn-lbl{display:flex;align-items:center;gap:6px;height:44px;min-width:44px;padding:0 14px 0 11px;border-radius:22px;background:rgba(7,16,28,.82);border:1px solid rgba(125,216,248,.18);color:var(--W);cursor:pointer;font-family:var(--m);font-size:11.5px;font-weight:600;letter-spacing:.5px;transition:transform .1s,background .15s}
 .bbtn-lbl:hover{background:rgba(7,16,28,.95)}
@@ -249,7 +248,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .pgback{cursor:pointer;color:var(--B);width:28px;height:28px;display:flex;align-items:center;justify-content:center;margin-left:-4px}
 
 /* Page-header labelled back button: pill-shaped, used by History and
-   Settings so the route back to Home is unmistakable */
+   Settings so the route back to Home is easily understood */
 .pgback-lbl{display:flex;align-items:center;gap:5px;height:38px;padding:0 12px 0 9px;border-radius:19px;background:rgba(125,216,248,.07);border:1px solid rgba(125,216,248,.18);color:var(--B);cursor:pointer;font-family:var(--m);font-size:11px;font-weight:600;letter-spacing:.5px;transition:background .15s,transform .1s;margin-left:-2px}
 .pgback-lbl:hover{background:rgba(125,216,248,.13)}
 .pgback-lbl:active{transform:scale(.96)}
@@ -815,7 +814,7 @@ async function loadDBFromSupabase(){
       if (stateBucket) stateBucket.uses.push(r.idea_text);
     }
 
-    // Sanity check: only swap the in-memory DB if we got something usable.
+    // Check: only swap the in-memory DB if something usable.
     if (Object.keys(next).length > 0) {
       DB = next;
       DB_SOURCE = 'live';
@@ -823,7 +822,7 @@ async function loadDBFromSupabase(){
     }
     return false;
   } catch (e) {
-    // Silent fall-through to the offline cache. We log to the console
+    // Silent fall-through to the offline cache. Log to the console
     // for the developer but never surface a network error to the user.
     console.warn('[FreshSense] Supabase load failed -- using offline cache.', e);
     return false;
@@ -846,9 +845,7 @@ const CV = (function(){
     return[h,s,v];
   }
   /* HSV pixel classifier — buckets each pixel into one of eight perceptual
-     colour categories. The thresholds tuned against the
-     ten test scenarios (UT01-UT10) and the four real-world.
-
+     colour categories. 
      Thresholds:
        black     v<0.10            very dark pixel — shadow or background
        white     s<0.15 & v>0.85   highlight or background
@@ -861,29 +858,29 @@ const CV = (function(){
   function classifyPixel(r,g,b){
     const[h,s,v]=rgbToHsv(r,g,b);
 
-    // Very dark pixels — typically background in dim kitchens, but the
+    // Very dark pixels, typically background in dim kitchens, but the
     // floor was lowered from 0.15 → 0.10 so dark-brown banana spots
-    // aren't lost to "black". (See bug B03 in dev log.)
+    // aren't lost to "black".
     if(v<0.10)return'black';
 
     // Unsaturated high-value pixel = highlight or white background.
     if(s<0.15&&v>0.85)return'white';
 
-    // Yellow band — two sub-bands so brighter-saturated and dimmer-saturated
+    // Yellow band, two sub-bands so brighter-saturated and dimmer-saturated
     // bananas both qualify. The lower-saturation rule catches indoor lighting.
     if(h>=40&&h<=70&&s>=0.35&&v>=0.5)return'yellow';
     if(h>=38&&h<=68&&s>=0.20&&v>=0.55)return'yellow';
 
-    // Green — wide hue band intentionally; unripe banana skin sits at
+    // Green, wide hue band intentionally; unripe banana skin sits at
     // ~80-110 but the band extends to catch teal-green kitchen surfaces
     // which still classify as not-fruit-producing for the bias score.
     if(h>=65&&h<=165&&s>=0.22)return'green';
 
-    // Brown — the orange-yellow side of the spectrum, mid-value.
+    // Brown, the orange-yellow side of the spectrum, mid-value.
     if(h>=15&&h<40&&s>=0.20&&v>=0.30&&v<0.70)return'brown';
 
     // Dark brown / black-spot region. Range broadened from v 0.15-0.40
-    // → 0.10-0.45 so a real overripe banana under typical kitchen
+    // 0.10-0.45 so a real overripe banana under typical environment
     // lighting (where shadow areas dip into the 0.10-0.20 range) still
     // registers as fruit rather than background.
     if(h>=5&&h<=45&&v>=0.10&&v<0.45)return'darkBrown';
@@ -896,9 +893,8 @@ const CV = (function(){
   /* Feature extraction — downsamples the input image to a 96×96 grid,
      classifies each pixel, and returns aggregated statistics.
 
-     The 96×96 size is a deliberate trade-off: small enough that the loop
-     completes in <50ms on a mid-range phone (important for the continuous
-     scanner running every 800ms), large enough to preserve the colour
+     size is a deliberate trade-off: small enough that the loop
+     completes in <50ms on a mid-range phone, large enough to preserve the colour
      proportions of typical produce. Tested at 64, 96, 128, 192 — 96
      gave the best speed/accuracy balance.
 
@@ -962,8 +958,7 @@ const CV = (function(){
     return bScore>aScore?'Banana':'Apple';
   }
   /* Banana classifier, maps the colour ratio object to one of five states.
-     Each rule is in priority order; the first match wins. Thresholds were
-     calibrated against UT01-UT05 plus four real-world reference photos.
+     Each rule is in priority order; the first match wins.
 
      State map (matches database keys in the DB module):
        spoiled  predominantly brown/dark — bake-only territory
@@ -1341,8 +1336,7 @@ function setTextSize(factor){
   haptic('light');
 }
 /* Cycle through the three sizes on each home-screen quickbar tap.
-   Easier for low-vision users than choosing from segmented control
-   when they're standing in a kitchen with one hand free. */
+   Easier for low-vision users than choosing from segmented control. */
 function cycleTextSize(){
   const i=TEXT_SIZES.indexOf(S.textSize);
   const next=TEXT_SIZES[(i+1)%TEXT_SIZES.length];
@@ -1455,7 +1449,7 @@ function vfTap(){
 
 /* Camera */
 /* CONTINUOUS SCANNING LOOP
-   The "QR-scanner-style" interaction: instead of a single shutter capture,
+   The "QR-scanner-style" interaction:
    the camera samples frames continuously and locks in a result when several
    consecutive frames agree.
 
@@ -1493,13 +1487,13 @@ function stopScanLoop(){
 
 /* One iteration of the loop: grab a frame, analyse the central region
    (which is what the user is told to frame between the yellow corners),
-   update the live status, and check stability.                         */
+   update the live status, and check stability.*/
 function scanTick(){
   if(!S.camReady||S.busy||S.mode!=='cam')return;
   const v=document.getElementById('cam-video');
   if(!v.videoWidth)return;        // video not ready yet
 
-  // Use the central 60% of the frame — matches the visual region marked
+  // Use the central 60% of the frame, matches the visual region marked
   // by the yellow corner brackets (.vf-corners is 210×210 inside the
   // viewfinder), keeping the analysis focused on what the user framed.
   const w=v.videoWidth,h=v.videoHeight;
@@ -1520,7 +1514,7 @@ function scanTick(){
   }
 
   // Only frames above the confidence floor enter the stability buffer.
-  // This is the key noise-rejection step.
+  // Key noise-rejection step.
   if(result.produce==='Unknown'||lastLiveConfidence<CONF_FLOOR){
     stabilityBuffer=[];
     return;
@@ -1547,7 +1541,7 @@ function scanTick(){
 }
 
 /* Freeze the current video frame to a JPEG and show it as the preview
-   image on the result card — gives the user a sense of "what was scanned". */
+   image on the result card, gives the user a sense of "what was scanned". */
 function captureCurrentFrameAsImage(){
   const v=document.getElementById('cam-video');
   const c=document.getElementById('cam-canvas');
@@ -1557,7 +1551,7 @@ function captureCurrentFrameAsImage(){
   showPreview(url);
 }
 
-/* startCamera — open getUserMedia, then begin the continuous scan loop
+/* startCamera — begin the continuous scan loop
    once the video element actually has frames. */
 async function startCamera(){
   if(S.camStream)return;
@@ -1809,8 +1803,7 @@ function newScan(){
 
 /* Mute */
 /* Voice mute, silences only the spoken text-to-speech, keeping the audio
-   cues alive. Cues are still useful for blind users even when they don't
-   want a full sentence read out (in a library, with a sleeping baby, etc.).
+   cues alive. Cues are still useful for users even when they don't want a full sentence read out.
    The Settings panel has a separate "Audio cues" toggle for muting those. */
 function toggleMute(){
   S.muted=!S.muted;
