@@ -6,7 +6,7 @@
 <title>FreshSense v4</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* FreshSense v4 — blind-friendly: yellow primary · light blue · white · on navy */
+/* FreshSense: blind-friendly colour values: yellow primary · light blue · white · on navy */
 :root{
   --Y:#FFE045;--Y2:#FFC700;--B:#7DD8F8;--B2:#4FC0E8;--W:#F4F4EF;
   --G:#5DDB78;--A:#FFA940;--R:#FF6161;--U:#8FA8C0;
@@ -22,7 +22,7 @@ html[data-hc="1"]{
   --N0:#000000;--N1:#000000;--N2:#0A0A0A;--N3:#141414;--N4:#1F1F1F;
   --BD:rgba(255,255,255,.35);--BD2:rgba(255,255,255,.55);
 }
-/* Text-size control — applies a uniform scale to the entire app via zoom */
+/* Text-size control: applies a uniform scale to the entire app via zoom */
 .phone{zoom:var(--sf,1)}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{width:100%;height:100%;background:#020510;display:flex;align-items:center;justify-content:center;font-family:var(--f);overflow:hidden}
@@ -73,9 +73,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .impact:focus-visible{outline:2px solid var(--Y);outline-offset:2px}
 .impact-chev{color:rgba(255,224,69,.5);flex-shrink:0;margin-left:4px}
 
-/* Home-screen accessibility quickbar — fast access to text-size and
+/* Home-screen accessibility quickbar, text-size and
    high-contrast without navigating into Settings. The deeper Settings
-   tab still exists and remains the master surface for these prefs. */
+   tab still exists and remains the master surface for these preferences. */
 .quickbar{display:flex;gap:6px;margin-bottom:14px}
 .qb{flex:1;background:var(--N3);border:1px solid var(--BD);border-radius:10px;padding:7px 10px;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:background .15s,border-color .15s,transform .1s;min-height:44px;color:rgba(244,244,239,.7);font-family:var(--m);font-weight:500;font-size:11px}
 .qb:hover{border-color:var(--BD2)}
@@ -167,7 +167,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
 /* Labelled back button used on the scanner top bar so the user can see
    the word "Home" rather than parsing a chevron icon alone. The same
-   pattern is used in History and Settings via .pgback-lbl. */
+   pattern is used in History and Settings via ".pgback-lbl." */
 .bbtn-lbl{display:flex;align-items:center;gap:6px;height:44px;min-width:44px;padding:0 14px 0 11px;border-radius:22px;background:rgba(7,16,28,.82);border:1px solid rgba(125,216,248,.18);color:var(--W);cursor:pointer;font-family:var(--m);font-size:11.5px;font-weight:600;letter-spacing:.5px;transition:transform .1s,background .15s}
 .bbtn-lbl:hover{background:rgba(7,16,28,.95)}
 .bbtn-lbl:active{transform:scale(.96)}
@@ -227,9 +227,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .cbtn.on svg{color:var(--Y)}
 .cbtn.b-on svg{color:var(--B)}
 
-/* Post-scan action row — small text buttons that appear under the result
+/* Post-scan row, small text buttons that appear under the result
    card after a scan locks in. Gives a clear exit path (Home / History)
-   without crowding the always-visible scanner controls. */
+   without crowding the scanner controls. */
 .post-actions{display:none;gap:8px;padding:10px 18px 4px;justify-content:center}
 .post-actions.show{display:flex}
 .pa-btn{flex:1;max-width:140px;display:flex;align-items:center;justify-content:center;gap:6px;background:var(--N3);border:1px solid var(--BD);color:var(--W);font-family:var(--m);font-size:11.5px;font-weight:600;letter-spacing:.5px;padding:9px 12px;border-radius:10px;cursor:pointer;transition:background .15s,border-color .15s,transform .1s;min-height:44px}
@@ -249,8 +249,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .pgback{cursor:pointer;color:var(--B);width:28px;height:28px;display:flex;align-items:center;justify-content:center;margin-left:-4px}
 
 /* Page-header labelled back button: pill-shaped, used by History and
-   Settings so the route back to Home is unmistakable -- not just a
-   bare chevron that some users might miss. */
+   Settings so the route back to Home is unmistakable */
 .pgback-lbl{display:flex;align-items:center;gap:5px;height:38px;padding:0 12px 0 9px;border-radius:19px;background:rgba(125,216,248,.07);border:1px solid rgba(125,216,248,.18);color:var(--B);cursor:pointer;font-family:var(--m);font-size:11px;font-weight:600;letter-spacing:.5px;transition:background .15s,transform .1s;margin-left:-2px}
 .pgback-lbl:hover{background:rgba(125,216,248,.13)}
 .pgback-lbl:active{transform:scale(.96)}
@@ -273,7 +272,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .acc-pill svg{color:var(--G);flex-shrink:0}
 .acc-pill span{font-size:11.5px;color:rgba(244,244,239,.58);line-height:1.5}
 
-/* Segmented control — used for the text-size selector */
+/* Segmented control: used for the text-size selector */
 .seg{display:flex;background:var(--N4);border:1px solid var(--BD);border-radius:10px;overflow:hidden;flex-shrink:0}
 .seg-btn{padding:8px 12px;font-family:var(--m);font-weight:600;color:rgba(125,216,248,.55);cursor:pointer;border:none;background:none;transition:background .15s,color .15s;min-width:44px;min-height:36px;display:flex;align-items:center;justify-content:center}
 .seg-btn:not(:last-child){border-right:1px solid var(--BD)}
@@ -641,18 +640,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 </div>
 
 <script>
-/* ═══════════════════════════════════════════════════════════════════════
-   FRESHSENSE v4 — all modules consolidated
-   1. DB           — 5-state produce database
-   2. CV           — offline HSV colour analyser
-   3. AUDIO        — Web Audio cue module
-   4. DEMO         — SVG fruit illustrations + scenarios
-   5. TRACKER      — simple scan history + saved-from-waste counter
-   6. APP LOGIC    — screens, scanner flow, voice, haptics
-═══════════════════════════════════════════════════════════════════════ */
 
 
-/* ─── 1. DATABASE ──────────────────────────────────────────────────── */
+/* DATABASE */
 /*
   FreshSense's freshness database can come from two places:
 
@@ -662,15 +652,14 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
     2) A Supabase-hosted PostgreSQL backend, fetched at app startup
        through PostgREST. When this succeeds it overwrites the inline
        copy, so editing produce data in Supabase changes what the app
-       displays without a code redeploy. This satisfies the project
-       brief's "database-connected dynamic content" requirement.
+       displays without a code redeploy.
 
-  The fallback is intentional: an offline blind user must never see
+  Fallback is intentional: an offline blind user must never see
   a broken application because their phone has no signal.
 */
 
 // Supabase project credentials. The anon key is safe to ship in client
-// code -- it is gated by row-level security policies in the database.
+// Code is gated by row-level security policies in the database.
 const SUPABASE_URL  = 'https://clhmrowhtguoqzcnasnj.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNsaG1yb3dodGd1b3F6Y25hc25qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyODg5ODEsImV4cCI6MjA5Mjg2NDk4MX0.spl8-tKaUBFi8IkCVH-6OPYFewlS5-6yhEsO0wo0FIg';
 
@@ -713,7 +702,7 @@ let DB = {
       shelf:{min:0,max:0,display:'Bake today or freeze'},
       signals:'Mostly brown or black. Soft flesh. Safe unless mouldy.',
       tip:"Still safe and intensely sweet. Bake today or freeze. Only discard if mouldy or smelling fermented.",
-      uses:['Ultimate banana bread - darker = better','1-ingredient banana ice cream - blend frozen','Frozen smoothie base - the creamiest','Mash through porridge to sweeten','Banana syrup - simmer 20 min']
+      uses:['Ultimate banana bread - darker = better','1-ingredient banana ice cream - blend frozen','Frozen smoothie base','Mash through porridge to sweeten','Banana syrup - simmer 20 min']
     }
   },
   apple: {
@@ -776,13 +765,12 @@ function getDBEntry(produce, dbKey){
                         tip, sort_order)
       recipe_idea      (id, state_id, idea_text, sort_order)
 
-  On success the inline DB constant is replaced. On any failure --
-  network down, RLS misconfigured, table missing -- the function
-  keeps the inline copy so the app continues to work offline.
+  On success the inline DB constant is replaced. On any failure (network down, RLS misconfigured, table missing)
+  the function keeps the inline copy so the app continues to work offline.
 */
 async function loadDBFromSupabase(){
   // The standard headers PostgREST expects on every authenticated request.
-  // The anon key goes in BOTH apikey and Authorization, which is what
+  // The anon key goes in both apikey and Authorisation, which is what
   // Supabase's own client library does internally.
   const headers = {
     'apikey':        SUPABASE_ANON,
@@ -843,7 +831,7 @@ async function loadDBFromSupabase(){
 }
 
 
-/* ─── 2. OFFLINE CV ───────────────────────────────────────────────── */
+/*  OFFLINE CV  */
 const CV = (function(){
   function rgbToHsv(r,g,b){
     r/=255;g/=255;b/=255;
@@ -858,15 +846,8 @@ const CV = (function(){
     return[h,s,v];
   }
   /* HSV pixel classifier — buckets each pixel into one of eight perceptual
-     colour categories. The thresholds were tuned empirically against the
-     ten synthetic test scenarios (UT01-UT10) AND the four real-world
-     reference photos taken during sprint 2.
-
-     HSV was chosen over RGB because hue (H) is rotation-invariant under
-     uniform brightness changes — a yellow banana in dim light still has
-     hue ~50, even when its RGB green channel has dropped (Smith, 1978).
-     The conversion follows the standard formula documented at
-     developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl.
+     colour categories. The thresholds tuned against the
+     ten test scenarios (UT01-UT10) and the four real-world.
 
      Thresholds:
        black     v<0.10            very dark pixel — shadow or background
@@ -980,7 +961,7 @@ const CV = (function(){
     if(Math.max(bScore,aScore)<0.4)return'Unknown';
     return bScore>aScore?'Banana':'Apple';
   }
-  /* Banana classifier — maps the colour ratio object to one of five states.
+  /* Banana classifier, maps the colour ratio object to one of five states.
      Each rule is in priority order; the first match wins. Thresholds were
      calibrated against UT01-UT05 plus four real-world reference photos.
 
@@ -994,7 +975,7 @@ const CV = (function(){
     const p=n=>Math.round(n*100);
     const Y=r.yellow,BR=r.brown,D=r.darkBrown,G=r.green;
 
-    // Spoiled — dominant dark or combined brown-dark exceeds half the fruit.
+    // Spoiled (dominant dark or combined brown-dark exceeds half the fruit)
     // The OR (D>0.30) catches very dark bananas with little detectable yellow.
     if(D>0.30||(BR+D)>0.50)return{
       dbKey:'spoiled',
@@ -1002,7 +983,7 @@ const CV = (function(){
       detail:`Predominantly brown or black (${p(BR+D)}%). Very ripe - ideal for baking.`
     };
 
-    // Unripe — strongly green and not yet yellow. Both conditions required
+    // Unripe (strongly green and not yet yellow) Both conditions required
     // because a fresh-yellow banana on a green background must not trigger this.
     if(G>0.32&&Y<0.45)return{
       dbKey:'unripe',
@@ -1018,21 +999,21 @@ const CV = (function(){
       detail:`Yellow with significant browning (${p(BR+D)}%). Best for baking.`
     };
 
-    // Fresh — clean uniform yellow.
+    // Fresh (clean uniform yellow)
     if(Y>0.55&&BR<0.12)return{
       dbKey:'fresh',
       confidence:Math.min(94,68+p(Y)*0.3),
       detail:`Bright uniform yellow (${p(Y)}%), minimal spotting.`
     };
 
-    // Ripe — yellow with mild speckling.
+    // Ripe (yellow with mild speckling)
     if(Y>0.40)return{
       dbKey:'ripe',
       confidence:Math.min(88,60+p(Y)*0.4),
       detail:`Yellow with light speckling (${p(BR)}% brown). Peak sweetness.`
     };
 
-    // Fallback — low confidence so the continuous-scan loop will reject
+    // Fallback, low confidence so the continuous-scan loop will reject
     // this frame and try again rather than locking in a bad guess.
     return{dbKey:'fresh',confidence:45,detail:'Ambiguous colour - treating as fresh.'};
   }
@@ -1090,7 +1071,7 @@ const CV = (function(){
 })();
 
 
-/* ─── 3. AUDIO CUES ───────────────────────────────────────────────── */
+/* AUDIO CUES */
 const AUDIO = (function(){
   const NOTE={E4:329.63,Fs4:369.99,A4:440,C5:523.25,D5:587.33,E5:659.25,G5:784,A5:880};
   const CUES={
@@ -1146,7 +1127,7 @@ const AUDIO = (function(){
 })();
 
 
-/* ─── 4. DEMO SCENARIOS + SVG ─────────────────────────────────────── */
+/* DEMO SCENARIOS + SVG */
 const DEMO = (function(){
   function seededSpots(seed,count,b){
     const out=[];let s=seed;
@@ -1250,7 +1231,7 @@ const DEMO = (function(){
 })();
 
 
-/* ─── 5. SIMPLE TRACKER ───────────────────────────────────────────── */
+/* SIMPLE TRACKER */
 const TRACKER = (function(){
   const KEY='fs_tracker_v4';
   const SAVE=new Set(['borderline','spoiled']);
@@ -1312,7 +1293,7 @@ const TRACKER = (function(){
 })();
 
 
-/* ─── 6. APP STATE + UI LOGIC ─────────────────────────────────────── */
+/* APP STATE + UI LOGIC */
 const S={
   voice:true,cues:true,tips:true,uses:true,haptic:true,hc:false,
   muted:false,apiKey:'',mode:'cam',bias:'auto',textSize:1,
@@ -1338,9 +1319,9 @@ function savePrefs(){
 }
 
 /* Apply a text-size factor to the entire app. The CSS uses
-   `zoom: var(--sf)` on the .phone element so layout reflows naturally
+   `zoom: var(sf)` on the .phone element so layout reflows naturally
    rather than scaling like a transform (which would not change wrap
-   points). Persisted to localStorage so it survives reloads.            */
+   points). Persisted to localStorage so it survives reloads.*/
 const TEXT_SIZES=[0.85,1.0,1.2];
 const TEXT_SIZE_LBLS={0.85:'A',1:'Aa',1.2:'AA'};
 function setTextSize(factor){
@@ -1431,7 +1412,7 @@ function leaveScanner(){
   goNav('home');
 }
 
-/* Post-scan navigation to history — closes the camera/demo cleanly then
+/* Post-scan navigation to history, closes the camera/demo cleanly then
    jumps to the History screen so the user can review the scan they just
    recorded alongside earlier entries. */
 function viewHistoryFromScan(){
@@ -1473,20 +1454,16 @@ function vfTap(){
 }
 
 /* Camera */
-/* ─── CONTINUOUS SCANNING LOOP ────────────────────────────────────────
+/* CONTINUOUS SCANNING LOOP
    The "QR-scanner-style" interaction: instead of a single shutter capture,
    the camera samples frames continuously and locks in a result when several
    consecutive frames agree.
 
-   This is the verify-by-stability pattern used by QR libraries such as
-   ZXing (Owen, 2019) — you don't trust a single decode, you wait for N
-   consecutive identical decodes before committing. It rejects flicker,
-   motion blur, partial occlusion, and lighting changes that would
-   otherwise cause spurious classifications.
+   Rejects flicker, motion blur, partial occlusion, and lighting changes that would
+   otherwise cause incorrect classifications.
 
    Tuning:
-     SCAN_INTERVAL_MS  600   — sample every 600ms (≈1.7 fps). Fast enough
-                                to feel live, slow enough to avoid drain.
+     SCAN_INTERVAL_MS  600   — sample every 600ms (≈1.7 fps)
      STABILITY_FRAMES    3   — need 3-in-a-row agreement to lock.
      CONF_FLOOR         70   — single-frame confidence must reach this
                                 before the frame is even considered for
@@ -1503,7 +1480,7 @@ let lastLiveConfidence=0;       // for the live status pill display
 /* Start the scan loop. Called when entering the scanner screen in
    camera mode, and re-armed after a "new scan" tap.                    */
 function startScanLoop(){
-  stopScanLoop();           // ensure no double-loop
+  stopScanLoop();           // ensures no double-loop
   stabilityBuffer=[];
   lastLiveConfidence=0;
   setStatus('Scanning…','scan');
@@ -1831,7 +1808,7 @@ function newScan(){
 }
 
 /* Mute */
-/* Voice mute — silences only the spoken text-to-speech, keeping the audio
+/* Voice mute, silences only the spoken text-to-speech, keeping the audio
    cues alive. Cues are still useful for blind users even when they don't
    want a full sentence read out (in a library, with a sleeping baby, etc.).
    The Settings panel has a separate "Audio cues" toggle for muting those. */
